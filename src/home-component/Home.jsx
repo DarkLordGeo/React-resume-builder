@@ -7,33 +7,38 @@ import { faTriangleExclamation, faX } from "@fortawesome/free-solid-svg-icons";
 // import { BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 
 function home(){
-  // * good
-  const [warning, warningAppear] = useState(() =>{
-    // console.log("works")
-    
-    return false
-  })
+  // * good job on the warning component
+  // const [warning, warningAppear] = useState(() =>{
+  //   return false
+  // })
   
-  // ! bad
-  // const [warning, warningAppear] = useState(false,console.log("once"))
-  
-  const showWarning = () =>{
-    warningAppear(!warning)
-  }
-  const hideWarning = () =>{
-    warningAppear(false)
+  // // const showWarning = () =>{
+  // //   warningAppear(!warning)
+  // // }
+  // // const hideWarning = () =>{
+  // //   warningAppear(false)
+  // // }
+  const [showWarning, setShowWarning] = useState(false)
+  const navigate = useNavigate()
+
+  const handleButtonClick = () => {
+    setShowWarning(true)
+    setTimeout(() => {
+      navigate('/themes')
+    }, 2000) // Show warning for 2 seconds before navigating
   }
 
-
+  const hideWarning = () => {
+    setShowWarning(false)
+  }
   
   return(
     <>
-
-
-    {/* {warning &&(
+    {/* warning message */}
+    {warning &&(
         <div
         id="warningMessage"
-        className="absolute flex-col items-center justify-center w-4/5 p-5 transition-all transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 rounded-md dark:bg-gray-900 dark:text-white md:w-3/5 top-1/2 left-1/2 border-slate-500"
+        className="fixed z-10 flex-col items-center justify-center w-4/5 p-5 transition-all transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 rounded-md dark:bg-gray-900 dark:text-white md:w-3/5 top-2/4 left-2/4 border-slate-500"
       >
         <div className="flex justify-end w-full">
           <div className="flex">
@@ -72,51 +77,11 @@ function home(){
           </p>
         </div>
         </div>
-    )} */}
+    )}
 
-
-      {/* <div
-        id="warningMessage"
-        className="flex-col items-center justify-center hidden w-4/5 transition-all bg-white rounded-md dark:bg-gray-900 dark:text-white md:w-3/5"
-      >
-        <div className="flex justify-end w-full">
-          <div className="flex">
-            <span />
-          </div>
-          <div id="closeButtonParent">
-            <button
-              id="closeButton"
-              className="text-2xl text-slate-700 dark:bg-gray-900 dark:text-white"
-            >
-              <i className="fa-solid fa-times" />
-            </button>
-          </div>
-        </div>
-        <div className="flex justify-center text-2xl">
-          <div id="warningIcon" className="text-yellow-500">
-            <i className="fa-solid fa-triangle-exclamation" />
-          </div>
-        </div>
-        <div>
-          <p
-            className="mt-6 mb-8 text-slate-800 dark:bg-gray-900 dark:text-white"
-            id="warningText"
-          >
-            Please be aware that this Resume Builder is developed using JavaScript
-            and styled with Tailwind CSS. It is a client-side application and does
-            not interact with any backend server. As such, all data entered
-            (including form inputs, text, and file uploads) will be stored
-            temporarily in the session and will be cleared when the browser tab is
-            closed or refreshed. To ensure your data is not lost, we recommend
-            manually saving any progress locally before ending your session. This
-            tool is intended for demonstration purposes only, and additional
-            features and updates are under development.
-          </p>
-        </div>
-      </div> */}
-
+    {/* main content */}
+    <div>
       
-      <div>
       <header className="flex items-center justify-around w-full h-auto gap-10 px-20 py-5  shadow-md xl:gap-5 min-[320px]:justify-evenly md:justify-evenly lg:justify-around min-[320px]:px-0 dark:bg-gray-900 dark:text-white dark:border-b-slate-500 dark:border-2 dark:border-solid dark:border-l-0 dark:border-r-0 dark:border-t-0">
         <div>
           <p className="my-5 text-4xl transition-colors  md:text-3xl lg:text-4xl lg:block min-[320px]:justify-center min-[320px]:text-xl ">
@@ -155,8 +120,6 @@ function home(){
           </ul>
         </div>
       </header>
-      
-
 
       <main className="flex flex-col items-center w-full gap-16 pt-24 pb-24 md:justify-center dark:bg-gray-900 dark:text-white">
         <div className="flex items-center justify-center w-4/5 text-3xl font-medium text-center sm:text-5xl md:text-4xl lg:text-6xl dark:text-white">
@@ -167,7 +130,7 @@ function home(){
         <div
           className="min-[320px]:px-5 min-[320px]:py-4 flex flex-row items-center justify-center gap-16 p-10 m-auto text-xl shadow-xl rounded-xl lg:w-4/5 md:w-4/5 min-[320px]:flex-col md:flex-row min-[320px]:gap-10 min-[320px]:w-4/5 min-[320px]:text-lg  dark:bg-gray-800 dark:text-white dark:shadow-xl"
         >
-          <div className="w-4/5 text-slate-500 dark:text-slate-300">
+          <div className="w-4/5 text-center text-slate-500 dark:text-slate-300">
             <p>
               "Build Your Resume with Passion is a user-friendly platform designed
               to help you create a professional resume effortlessly. With an
@@ -177,7 +140,7 @@ function home(){
             </p>
           </div>
           <div className="h-48 border-l border-slate-500 lg:h-72 min-[320px]:h-0 min-[320px]:md:h-72 min-[320px]:w-4/5 min-[320px]:border-t min-[320px]:lg:w-0 min-[320px]:md:w-0"></div>
-          <div className="w-4/5 text-slate-500 dark:text-slate-300">
+          <div className="w-4/5 text-center text-slate-500 dark:text-slate-300">
             <p>
               "Whether you're a seasoned professional or just starting your career,
               Build Your Resume with Passion ensures that your resume stands out.
@@ -235,7 +198,9 @@ function home(){
           </ul>
         </div>
       </footer>
-      </div>
+      {showWarning && <Warning hideWarning={hideWarning} />}
+    </div>
+    
     </>
 
   )
