@@ -2,40 +2,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare, faKaggle, faLinkedinIn} from "@fortawesome/free-brands-svg-icons"
 import React, { useState } from "react";
 import { faTriangleExclamation, faX } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 // import reactRouterDom from "react-router-dom";
 // import { BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 
 function home(){
   // * good job on the warning component
-  // const [warning, warningAppear] = useState(() =>{
-  //   return false
-  // })
+  const [warning, warningAppear] = useState(() =>{
+    return false
+  })
   
-  // // const showWarning = () =>{
-  // //   warningAppear(!warning)
-  // // }
-  // // const hideWarning = () =>{
-  // //   warningAppear(false)
-  // // }
-  const [showWarning, setShowWarning] = useState(false)
-  const navigate = useNavigate()
-
-  const handleButtonClick = () => {
-    setShowWarning(true)
-    setTimeout(() => {
-      navigate('/themes')
-    }, 2000) // Show warning for 2 seconds before navigating
+  const showWarning = () =>{
+    warningAppear(!warning)
   }
-
-  const hideWarning = () => {
-    setShowWarning(false)
+  const hideWarning = () =>{
+    warningAppear(false)
   }
-  
+  const navigate = () =>{
+    navigate("/themes")
+    // return <Link to="/themes"/>;
+  }
   return(
     <>
     {/* warning message */}
-    {warning &&(
+    {/* {warning &&(
         <div
         id="warningMessage"
         className="fixed z-10 flex-col items-center justify-center w-4/5 p-5 transition-all transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 rounded-md dark:bg-gray-900 dark:text-white md:w-3/5 top-2/4 left-2/4 border-slate-500"
@@ -77,7 +68,7 @@ function home(){
           </p>
         </div>
         </div>
-    )}
+    )} */}
 
     {/* main content */}
     <div>
@@ -151,17 +142,22 @@ function home(){
           </div>
         </div>
         <div className="flex items-center justify-center gap-10 p-10 shadow-xl rounded-xl min-[320px]:sm:p-5 md:p-8 lg:p-10 min-[320px]:p-5 min-[320px]:flex-col min-[320px]:gap-5 sm:flex-row md:flex-row lg:flex-row dark:bg-gray-800 dark:text-white">
-          <button
-            id="buttonWarning"
-            className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-2xl min-[320px]:sm:text-xl md:text-2xl  font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500  focus:ring-4 focus:outline-none dark:bg-slate-700 dark:hover:bg-blue-700"
-            
-            onClick={showWarning}
-
-            >
-            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-gray-900 hover:text-white rounded-md group-hover:bg-opacity-0">
-              Build now!
-            </span>
-          </button>
+          <a href="/themes">
+            <button
+              id="buttonWarning"
+              className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-2xl min-[320px]:sm:text-xl md:text-2xl  font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500  focus:ring-4 focus:outline-none dark:bg-slate-700 dark:hover:bg-blue-700"
+              
+              // onClick={showWarning , navigate}
+              onClick={() =>{
+                showWarning(),
+                navigate()
+              }}
+              >
+              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-gray-900 hover:text-white rounded-md group-hover:bg-opacity-0">
+                Build now!
+              </span>
+            </button>
+           </a>
           <div className="h-16 border-l border-slate-500 lg:h-16 min-[320px]:h-0 min-[320px]:md:h-16 min-[320px]:sm:h-16 min-[320px]:border-t min-[320px]:lg:w-0 min-[320px]:md:w-0 min-[320px]:w-4/5 min-[320px]:sm:w-0"></div>
           <span>
             <a
@@ -198,7 +194,7 @@ function home(){
           </ul>
         </div>
       </footer>
-      {showWarning && <Warning hideWarning={hideWarning} />}
+
     </div>
     
     </>
