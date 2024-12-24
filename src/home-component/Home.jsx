@@ -13,6 +13,8 @@ function home(){
     return false
   })
   
+
+  
   const showWarning = () =>{
     warningAppear(!warning)
   }
@@ -21,54 +23,10 @@ function home(){
   }
   const navigate = () =>{
     navigate("/themes")
-    // return <Link to="/themes"/>;
   }
   return(
     <>
-    {/* warning message */}
-    {/* {warning &&(
-        <div
-        id="warningMessage"
-        className="fixed z-10 flex-col items-center justify-center w-4/5 p-5 transition-all transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 rounded-md dark:bg-gray-900 dark:text-white md:w-3/5 top-2/4 left-2/4 border-slate-500"
-      >
-        <div className="flex justify-end w-full">
-          <div className="flex">
-            <span />
-          </div>
-          <div id="closeButtonParent">
-            <button
-              id="closeButton"
-              onClick={hideWarning}
-              className="text-2xl text-slate-700 dark:bg-gray-900 dark:text-white"
-            >
-              <FontAwesomeIcon icon={faX} 
-              className="text-2xl text-slate-700 dark:bg-gray-900 dark:text-white"
-              />
-            </button>
-          </div>
-        </div>
-        <div className="flex justify-center text-2xl">
-          <div id="warningIcon" className="text-yellow-500">
-          <FontAwesomeIcon icon={faTriangleExclamation} />
-          </div>
-        </div>
-        <div>
-          <p
-            className="mt-6 mb-8 text-center text-slate-800 dark:bg-gray-900 dark:text-white"
-          >
-            Please be aware that this Resume Builder is developed using JavaScript
-            and styled with Tailwind CSS. It is a client-side application and does
-            not interact with any backend server. As such, all data entered
-            (including form inputs, text, and file uploads) will be stored
-            temporarily in the session and will be cleared when the browser tab is
-            closed or refreshed. To ensure your data is not lost, we recommend
-            manually saving any progress locally before ending your session. This
-            tool is intended for demonstration purposes only, and additional
-            features and updates are under development.
-          </p>
-        </div>
-        </div>
-    )} */}
+
 
     {/* main content */}
     <div>
@@ -146,11 +104,12 @@ function home(){
             <button
               id="buttonWarning"
               className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-2xl min-[320px]:sm:text-xl md:text-2xl  font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500  focus:ring-4 focus:outline-none dark:bg-slate-700 dark:hover:bg-blue-700"
-              
-              // onClick={showWarning , navigate}
               onClick={() =>{
-                showWarning(),
-                navigate()
+                // showWarning(),
+                // navigate()
+
+                showWarning();
+                hideWarning();
               }}
               >
               <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-gray-900 hover:text-white rounded-md group-hover:bg-opacity-0">

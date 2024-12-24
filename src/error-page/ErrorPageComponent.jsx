@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom"
+const goback = () =>{
+    window.history.back()
+}
 
 function ErrorPageComponent(){
     return (
         <>
-        <div className='flex items-center justify-center h-screen text-white bg-dark-bg'>
-            Not Found 404
-            <Link to="/"> Go back to home link</Link>
+        <div className='flex flex-col items-center justify-center h-screen gap-5 text-white bg-dark-bg'>
+            <h1 className="text-4xl">404 page not found</h1>
+            <a href="/" className="hover:underline" onClick={(e) => {e.preventDefault(); goback()}}>Go back</a>
         </div>
+       
         </>
     )
 }
