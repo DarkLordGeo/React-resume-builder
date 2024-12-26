@@ -1,4 +1,3 @@
-
 import firstimage from '/Users/mrerg/Desktop/React resume builder/src/themes/img/first.jpg'
 import Secondimage from '/Users/mrerg/Desktop/React resume builder/src/themes/img/second.jpg'
 import Thirdimage from '/Users/mrerg/Desktop/React resume builder/src/themes/img/third.jpg'
@@ -11,20 +10,51 @@ import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 
+import { Navigate } from 'react-router-dom';
+
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+// import { Navigate } from 'react-router-dom';
+// import { useAccess } from '../access';
+
+
 // import { Outlet } from 'react-router-dom';
 
 export default function App() {
 
+  // const navigate = useNavigate();
+
+  // const handleThemeSelection = () => {
+  //   setThemeSelected(true);
+  //   navigate('/forms');
+  // };
+  
+  // useEffect(() => {
+  //   const access = localStorage.getItem("buttonClicked");
+  //   setHasAccess(access === "true");
+  // }, []);
+
+  // if (!hasAccess) {
+  //   return <Navigate to="/ErrorPageComponent" />;
+  // }
+  const [hasAccess, setHasAccess] = useState(false);
+  const [themeSelected, setThemeSelected] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const access = localStorage.getItem("buttonClicked");
+    setHasAccess(access === "true");
+  }, []);
+
+  if (!hasAccess) {
+    return <Navigate to="/ErrorPageComponent" />;
+  }
+
   const handleThemeSelection = () => {
-    // Mark theme as selected
     setThemeSelected(true);
-
-    // Navigate to the forms page
-    navigate('/forms');
+    navigate("/forms");
   };
-
   
   return (
     <>
@@ -86,16 +116,16 @@ export default function App() {
               className="h-full"
             >
               <SwiperSlide>
-                <img src={firstimage} className="object-cover w-full h-full" />
+                <img src={firstimage} className="object-cover w-full h-full"  onClick={handleThemeSelection}/>
               </SwiperSlide>
               <SwiperSlide>
-                <img src={Secondimage} className="object-cover w-full h-full" />
+                <img src={Secondimage} className="object-cover w-full h-full" onClick={handleThemeSelection}/>
               </SwiperSlide>
               <SwiperSlide>
-                <img src={Fourthimage} className="object-cover w-full h-full" />
+                <img src={Fourthimage} className="object-cover w-full h-full" onClick={handleThemeSelection}/>
               </SwiperSlide>
               <SwiperSlide>
-                <img src={Thirdimage} className="object-cover w-full h-full" />
+                <img src={Thirdimage} className="object-cover w-full h-full" onClick={handleThemeSelection}/>
               </SwiperSlide>
             </Swiper>
           </div>

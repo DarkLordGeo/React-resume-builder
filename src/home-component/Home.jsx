@@ -1,32 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare, faKaggle, faLinkedinIn} from "@fortawesome/free-brands-svg-icons"
 import React, { useState } from "react";
-import { faTriangleExclamation, faX } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+// import Themes from 'themes/themes.jsx'
+
+// import { useNavigate } from "react-router-dom";
+// import { useAccess } from "../access";
+// import { faTriangleExclamation, faX } from "@fortawesome/free-solid-svg-icons";
+// import { Link } from "react-router-dom";
 
 // import reactRouterDom from "react-router-dom";
 // import { BrowserRouter as Router, Route, Switch} from 'react-router-dom' 
 
-function home(){
-  // * good job on the warning component
-  const [warning, warningAppear] = useState(() =>{
-    return false
-  })
-  
+function home({ buttonClicked, setButtonClicked }){
 
-  
-  const showWarning = () =>{
-    warningAppear(!warning)
-  }
-  const hideWarning = () =>{
-    warningAppear(false)
-  }
-  const navigate = () =>{
-    navigate("/themes")
-  }
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setButtonClicked(true); 
+    navigate('/themes');  
+    localStorage.setItem("buttonClicked", "true");  
+  };
+
+
   return(
     <>
-
 
     {/* main content */}
     <div>
@@ -100,23 +100,20 @@ function home(){
           </div>
         </div>
         <div className="flex items-center justify-center gap-10 p-10 shadow-xl rounded-xl min-[320px]:sm:p-5 md:p-8 lg:p-10 min-[320px]:p-5 min-[320px]:flex-col min-[320px]:gap-5 sm:flex-row md:flex-row lg:flex-row dark:bg-gray-800 dark:text-white">
-          <a href="/themes">
+          {/* <a href="/themes"> */}
             <button
               id="buttonWarning"
               className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-2xl min-[320px]:sm:text-xl md:text-2xl  font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500  focus:ring-4 focus:outline-none dark:bg-slate-700 dark:hover:bg-blue-700"
               onClick={() =>{
-                // showWarning(),
-                // navigate()
-
-                showWarning();
-                hideWarning();
+                handleClick()
               }}
               >
               <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white text-gray-900 hover:text-white rounded-md group-hover:bg-opacity-0">
                 Build now!
+                {/* {buttonClicked ? "positive" : "negative"} */}
               </span>
             </button>
-           </a>
+           {/* </a> */}
           <div className="h-16 border-l border-slate-500 lg:h-16 min-[320px]:h-0 min-[320px]:md:h-16 min-[320px]:sm:h-16 min-[320px]:border-t min-[320px]:lg:w-0 min-[320px]:md:w-0 min-[320px]:w-4/5 min-[320px]:sm:w-0"></div>
           <span>
             <a
