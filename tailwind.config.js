@@ -11,7 +11,7 @@ export default {
           'dark-bg': '#1a202c',
           'light-text': '#000000',
           'dark-text': '#ffffff',
-        },
+        }
       },
   },
   plugins: [],

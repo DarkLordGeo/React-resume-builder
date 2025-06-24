@@ -1,60 +1,21 @@
-import firstimage from '/Users/mrerg/Desktop/React resume builder/src/themes/img/first.jpg'
-import Secondimage from '/Users/mrerg/Desktop/React resume builder/src/themes/img/second.jpg'
-import Thirdimage from '/Users/mrerg/Desktop/React resume builder/src/themes/img/third.jpg'
-import Fourthimage from '/Users/mrerg/Desktop/React resume builder/src/themes/img/fourth.jpg'
-
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-import { EffectCoverflow, Pagination } from 'swiper/modules';
-import { useNavigate } from 'react-router-dom';
-
-import { Navigate } from 'react-router-dom';
-
-import { useState } from 'react';
-import { useEffect } from 'react';
-
-// import { Navigate } from 'react-router-dom';
-// import { useAccess } from '../access';
 
 
-// import { Outlet } from 'react-router-dom';
+import Slider from '../slider-component/slider'
 
-export default function App() {
+function Themes() {
+  // const images = [firstImage,secondImage,thirdImage,fourthImage]
+  // const [activeSlide, setActiveSlide] = useState(0)
 
-  // const navigate = useNavigate();
-
-  // const handleThemeSelection = () => {
-  //   setThemeSelected(true);
-  //   navigate('/forms');
-  // };
-  
-  // useEffect(() => {
-  //   const access = localStorage.getItem("buttonClicked");
-  //   setHasAccess(access === "true");
-  // }, []);
-
-  // if (!hasAccess) {
-  //   return <Navigate to="/ErrorPageComponent" />;
-  // }
-  const [hasAccess, setHasAccess] = useState(false);
-  const [themeSelected, setThemeSelected] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const access = localStorage.getItem("buttonClicked");
-    setHasAccess(access === "true");
-  }, []);
-
-  if (!hasAccess) {
-    return <Navigate to="/ErrorPageComponent" />;
-  }
-
-  const handleThemeSelection = () => {
-    setThemeSelected(true);
-    navigate("/forms");
-  };
+  // const slide = images.map((src,key) => {
+  //   return(
+  //     <SwiperSlide key={key}>
+  //       <img src={src} alt={`Slide ${key}`}/>
+  //     </SwiperSlide>
+  //   )
+  // })
   
   return (
     <>
@@ -96,9 +57,12 @@ export default function App() {
               </li>
             </ul>
           </div>
-        </header>
-        <main className="flex flex-col items-center justify-start min-h-screen gap-20 px-12 py-5 dark:bg-gray-900 dark:text-white">
-          <div className="w-11/12  sm:w-7/12 md:w-5/12 lg:w-4/12 xl:w-3/12 swiper mySwiper min-h-[50vh] mx-auto ">
+      </header>
+      <main className="flex flex-col items-center justify-start min-h-screen gap-20 px-12 py-5 dark:bg-gray-900 dark:text-white">
+
+          <Slider />
+          
+          {/* <div className="w-11/12  sm:w-7/12 md:w-5/12 lg:w-4/12 xl:w-3/12 swiper mySwiper min-h-[50vh] mx-auto ">
             <Swiper
               effect={'coverflow'}
               grabCursor={true}
@@ -114,35 +78,23 @@ export default function App() {
               pagination={true}
               modules={[EffectCoverflow, Pagination]}
               className="h-full"
+              onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+              // onDragEnter={() => console.log("something")}
             >
-              <SwiperSlide>
-                <img src={firstimage} className="object-cover w-full h-full"  onClick={handleThemeSelection}/>
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={Secondimage} className="object-cover w-full h-full" onClick={handleThemeSelection}/>
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={Fourthimage} className="object-cover w-full h-full" onClick={handleThemeSelection}/>
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={Thirdimage} className="object-cover w-full h-full" onClick={handleThemeSelection}/>
-              </SwiperSlide>
+              {slide}
             </Swiper>
           </div>
-
           <button 
-          // onClick={() => {
-          //   // navigate("/themes/forms")
-          // }}
-          onClick={handleThemeSelection}
+          onClick={navigateForms}
           className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-3xl sm:text-lg font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
             <span className="relative px-10 py-5 sm:px-5 sm:py-2.5 transition-all duration-75 ease-in bg-white rounded-md dark:bg-gray-900 group-hover:bg-opacity-0">
               Build!
             </span>
-          </button>
-        </main>
+          </button> */}
+      </main>
     </div>
-        {/* <Outlet /> */}
     </>
   );
 }
+
+export default Themes

@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
-import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+function WarningComponent({shown}) {
+  
+  // const [showWarning, setShowWarning] = useState(null); 
+  // useEffect(() => {
+  //   const warningDismissed = sessionStorage.getItem("warningDismissed");
 
-function WarningComponent() {
-  const [showWarning, setShowWarning] = useState(null); 
+  //   if (warningDismissed === "true") {
+  //     setShowWarning(false); 
+  //   } else {
+  //     setShowWarning(true);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    const warningDismissed = sessionStorage.getItem("warningDismissed");
+  // const hideWarning = () => {
+  //   setShowWarning(false);
+  //   sessionStorage.setItem("warningDismissed", "true"); 
+  // };
 
-    if (warningDismissed === "true") {
-      setShowWarning(false); 
-    } else {
-      setShowWarning(true);
-    }
-  }, []);
+  // if (showWarning === null) return null;
 
-  const hideWarning = () => {
-    setShowWarning(false);
-    sessionStorage.setItem("warningDismissed", "true"); 
-  };
+  const navigate = useNavigate()
 
-  if (showWarning === null) return null;
-
+  const [appear,setAppear] = useState(true)
+  function hideWarning(){
+    setAppear(false)
+    navigate("/themes")
+  }
+  
   return (
     <div>
-      {showWarning && (
+      {shown && (
         <div
           id="warningMessage"
-          className="fixed z-20 flex-col items-center justify-center w-4/5 p-5 transition-all transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 rounded-md dark:bg-gray-900 dark:text-white md:w-3/5 top-2/4 left-2/4 border-slate-500"
+          className={` ${appear ? 'visible' : 'invisible'}  fixed z-20 flex-col items-center justify-center w-4/5 p-5 transition-all transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 rounded-md dark:bg-gray-900 dark:text-white md:w-3/5 top-2/4 left-2/4 border-slate-500`}
         >
           <div className="flex justify-end w-full">
             <button
@@ -50,9 +57,8 @@ function WarningComponent() {
           </p>
         </div>
       )}
-      <Outlet />
     </div>
-  );
+  )
 }
 
 export default WarningComponent;

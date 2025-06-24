@@ -1,5 +1,33 @@
+import firstImage from '../themes/img/first.jpg'
+import secondImage from '../themes/img/second.jpg'
+import thirdImage from '../themes/img/third.jpg'
+import fourthImage from '../themes/img/fourth.jpg'
+
+import { useState } from 'react'
+import Slider from '../slider-component/slider'
 
 function Forms(){
+
+    // const [activeImage,setActiveImage] = useState(0)
+
+    // const setImage = (newState)  =>{
+    //     setActiveImage(newState)
+    // }
+
+
+    const images = [firstImage,secondImage,thirdImage,fourthImage]
+    const index = localStorage.getItem("index")
+
+    //   console.log(setImage());
+      
+    //   const imageToShow = images.map((src) => {
+    //     return(
+    //       <>
+    //         <img src={src[index]}  />
+    //       </>
+    //     )
+    //   })
+
     return(
         <>
             <header className="flex items-center justify-around w-full h-auto gap-10 px-20 py-5  shadow-md xl:gap-5 min-[320px]:justify-evenly md:justify-evenly lg:justify-around min-[320px]:px-0 dark:bg-gray-900 dark:text-white dark:border-b-slate-500 dark:border-2 dark:border-solid dark:border-l-0 dark:border-r-0 dark:border-t-0">
@@ -41,6 +69,7 @@ function Forms(){
                 </div>
             </header>
             <main className="flex flex-col justify-start lg:flex-row lg:justify-center items-center px-2.5 py-5 dark:bg-gray-900 dark:text-white lg:items-start lg:py-5 min-h-screen">
+                
                 <div className="flex flex-col items-center justify-center w-full gap-5 px-5 py-10 rounded-md shadow-xl">
                 {/* first accordion */}
                 <div id="accordion-collapse" data-accordion="collapse" className="w-full">
@@ -555,10 +584,11 @@ function Forms(){
                     </div>
                 </div>
                 </div>
+
                 <div className="flex flex-col items-center justify-center w-4/5 gap-5 px-5 py-12 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
                 <div className="items-center justify-center hidden sm:flex">
                     <img
-                    src="Blue and Gray Simple Professional CV Resume.jpg"
+                    src={images[index]}
                     alt=""
                     className="w-4/5"
                     />
@@ -572,6 +602,7 @@ function Forms(){
                     </button>
                 </div>
                 </div>
+                
             </main>
         </>
     )

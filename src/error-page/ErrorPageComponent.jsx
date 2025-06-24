@@ -9,7 +9,6 @@ function ErrorPageComponent(){
             <h1 className="text-4xl">404 page not found</h1>
             <a href="/" className="hover:underline" onClick={(e) => {e.preventDefault(); goback()}}>Go back</a>
         </div>
-       
         </>
     )
 }
