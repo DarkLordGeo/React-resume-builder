@@ -4,20 +4,13 @@ import Home from './home-component/Home';
 import Theme from './themes/themes'
 import Forms from './forms-component/forms'
 
-import ErrorPageComponent from './error-page/errorPageComponent';
-
-
-import AccessLimit from './accesslimit/acces';
+// import ErrorPageComponent from './error-page/errorPageComponent';
+// import AccessLimit from './accesslimit/acces';
 
 
 
 function App() {
-
-  // const [buttonClicked, setButtonClicked] = useState(false);
-
-
   return (
-
     <>
     <BrowserRouter>
       <Routes>
@@ -27,23 +20,6 @@ function App() {
       </Routes>
     </BrowserRouter>
     </>
-    // <BrowserRouter>
-    //   <Routes>
-    //     {/* Public routes */}
-    //     <Route path="/" element={<Home buttonClicked={buttonClicked} setButtonClicked={setButtonClicked} />} />
-
-    //     {/* Protected route
-    //     <Route 
-    //       path="/themes" 
-    //       // element={<Themes/>}
-    //       element={buttonClicked ? <Themes /> : <AccessLimit/>} 
-    //     />
-
-    //     {/* Fallback route */}
-    //     {/* <Route path="*" element={<ErrorPageComponent />} />  */}
-
-    //   </Routes>
-    // </BrowserRouter>
   );
 }
 
