@@ -1,5 +1,5 @@
 import Header from "../header/header";
-import Main from "../homeMain/main";
+import Main from "../homeMain/Main.jsx";
 import Footer from "../footer/Footer";
 import { ThemeContext } from "../toggle/ThemeContext";
 import { useEffect, useState } from "react";
