@@ -7,27 +7,8 @@ import { useState } from 'react'
 import Slider from '../slider-component/slider'
 
 function Forms(){
-
-    // const [activeImage,setActiveImage] = useState(0)
-
-    // const setImage = (newState)  =>{
-    //     setActiveImage(newState)
-    // }
-
-
     const images = [firstImage,secondImage,thirdImage,fourthImage]
     const index = localStorage.getItem("index")
-
-    //   console.log(setImage());
-      
-    //   const imageToShow = images.map((src) => {
-    //     return(
-    //       <>
-    //         <img src={src[index]}  />
-    //       </>
-    //     )
-    //   })
-
     return(
         <>
             <header className="flex items-center justify-around w-full h-auto gap-10 px-20 py-5  shadow-md xl:gap-5 min-[320px]:justify-evenly md:justify-evenly lg:justify-around min-[320px]:px-0 dark:bg-gray-900 dark:text-white dark:border-b-slate-500 dark:border-2 dark:border-solid dark:border-l-0 dark:border-r-0 dark:border-t-0">
@@ -586,21 +567,21 @@ function Forms(){
                 </div>
 
                 <div className="flex flex-col items-center justify-center w-4/5 gap-5 px-5 py-12 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
-                <div className="items-center justify-center hidden sm:flex">
-                    <img
-                    src={images[index]}
-                    alt=""
-                    className="w-4/5"
-                    />
-                </div>
-                <div className="flex justify-center">
-                    <button
-                    type="button"
-                    className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                    >
-                    Download
-                    </button>
-                </div>
+                    <div className="items-center justify-center hidden sm:flex">
+                        <img
+                        src={images[index]}
+                        alt=""
+                        className="w-4/5"
+                        />
+                    </div>
+                    <div className="flex justify-center">
+                        <button
+                        type="button"
+                        className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                        >
+                        Download
+                        </button>
+                    </div>
                 </div>
                 
             </main>
