@@ -28,23 +28,7 @@ function Header(){
                 <div>
                 <ul className="flex items-center justify-center gap-10 text-2xl list-none dark:text-slate">
                     <li className="flex items-center justify-center gap-2 cursor-pointer sm:lg:flex">
-                    <div>
-                        <img
-                        src="brightness.png"
-                        alt="Light Mode"
-                        className="w-6 dark:hidden"
-                        id="darkModeSun"
-                        />
-                    </div>
                     <Toggle onToggle={toggleChecked} darkMode={darkMode}/>
-                    <div>
-                        <img
-                        src="night-mode.png"
-                        alt="Light Mode"
-                        className="w-6 dark:hidden"
-                        id="darkModeMoon"
-                        />
-                    </div>
                     </li>
                 </ul>
                 </div>
