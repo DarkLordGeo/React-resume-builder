@@ -1,4 +1,4 @@
-export default function Toggle({onToggle,darkMode}) {
+function Toggle({onToggle,darkMode}) {
     return (
         <>
             <label className="inline-flex items-center cursor-pointer">
@@ -13,3 +13,5 @@ export default function Toggle({onToggle,darkMode}) {
         </>
     )
 }
+
+export default Toggle

@@ -39,7 +39,7 @@ function Slider(){
     
     return(
         <>
-         <div className="w-11/12  sm:w-7/12 md:w-5/12 lg:w-4/12 xl:w-3/12 swiper mySwiper min-h-[50vh] mx-auto ">
+         <div className="w-11/12  sm:w-7/12 md:w-5/12 lg:w-4/12 xl:w-3/12 swiper mySwiper min-h-[50vh] mx-auto shadow-2xl">
             <Swiper
               effect={'coverflow'}
               grabCursor={true}
