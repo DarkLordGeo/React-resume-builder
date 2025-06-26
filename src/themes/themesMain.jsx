@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Slider from "../slider-component/slider"
 import { ThemeContext } from "../toggle/ThemeContext";
+
 function ThemesMain(){
     const { darkMode } = useContext(ThemeContext);
     

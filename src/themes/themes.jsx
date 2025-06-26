@@ -12,11 +12,11 @@ function Themes() {
     const [darkMode, setDarkMode] = useState(() => {
       const saved = localStorage.getItem("darkMode");
       return saved === "true"; 
-    });
+    })
   
     useEffect(() => {
       localStorage.setItem("darkMode", darkMode);
-    }, [darkMode]);
+    }, [darkMode])
   
   return (
     <>
@@ -24,9 +24,6 @@ function Themes() {
       <ThemeContext.Provider value={{darkMode,setDarkMode}}>
         <Header />
         <ThemesMain />
-        {/* <main className="flex flex-col items-center justify-start min-h-screen gap-20 px-12 py-5 dark:bg-gray-900 dark:text-white">
-            <Slider />
-        </main> */}
       </ThemeContext.Provider>
     </div>
     </>

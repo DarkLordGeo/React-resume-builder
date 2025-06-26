@@ -2,26 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+
 function WarningComponent({shown}) {
-  
-  // const [showWarning, setShowWarning] = useState(null); 
-  // useEffect(() => {
-  //   const warningDismissed = sessionStorage.getItem("warningDismissed");
-
-  //   if (warningDismissed === "true") {
-  //     setShowWarning(false); 
-  //   } else {
-  //     setShowWarning(true);
-  //   }
-  // }, []);
-
-  // const hideWarning = () => {
-  //   setShowWarning(false);
-  //   sessionStorage.setItem("warningDismissed", "true"); 
-  // };
-
-  // if (showWarning === null) return null;
-
   const navigate = useNavigate()
 
   const [appear,setAppear] = useState(true)
