@@ -9,7 +9,6 @@ import { useContext, useEffect, useState } from "react";
 function Footer() {
     
     const { darkMode } = useContext(ThemeContext);
-      // Copyright
     const date = new Date
     
     return(

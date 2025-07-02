@@ -1,13 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './home-component/Home';
 import Theme from './themes/themes'
 import Forms from './forms-component/forms'
-
-// import ErrorPageComponent from './error-page/errorPageComponent';
-// import AccessLimit from './accesslimit/acces';
-
-
+import DownloadPage from './downloadPage/DownloadPage';
 
 function App() {
   return (
@@ -17,6 +12,7 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/themes' element={<Theme />}/>
         <Route path='/forms' element={<Forms />}/>
+        <Route path='/download' element={<DownloadPage />} />
       </Routes>
     </BrowserRouter>
     </>

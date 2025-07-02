@@ -66,7 +66,6 @@ function Main(){
             </div>
         </main>
         <Warning shown={clicked}/>
-
       </>
     )
 }

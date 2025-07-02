@@ -1,28 +1,50 @@
-import firstImage from '../themes/img/first.jpg'
-import secondImage from '../themes/img/second.jpg'
-import thirdImage from '../themes/img/third.jpg'
-import fourthImage from '../themes/img/fourth.jpg'
-
-import { usePDF } from 'react-to-pdf'
-
-
-import { Page, Text, View, Document, StyleSheet, pdf } from '@react-pdf/renderer';
-
-import Theme1 from '../theme1/Theme1.jsx'
+// import firstImage from '../themes/img/first.jpg'
+// import secondImage from '../themes/img/second.jpg'
+// import thirdImage from '../themes/img/third.jpg'
+// import fourthImage from '../themes/img/fourth.jpg'
 
 import { useContext, useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flowbite-react";
 import { ThemeContext } from "../toggle/ThemeContext";
 
 import { useRef } from 'react';
-import generatePDF from 'react-to-pdf';
+
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
+import ThemeComponent from '../themeComponent/ThemeComponent.jsx';
+
 
 function FormsMain() {
-    const { toPDF, targetRef } = usePDF({filename: 'test.pdf'});
+
+    // const [direct,setDirected] = useState(false)
+    
+    // const printRef = useRef();
+    // const handleDownloadPdf = async () => {
+    //     const element = printRef.current;
+    //     const canvas = await html2canvas(element, {
+    //         scale: 2,
+    //         useCORS: true,
+    //         backgroundColor: "#fff",
+    //     });
+    //     const data = canvas.toDataURL("image/png");
+    //     const pdf = new jsPDF({
+    //         orientation: "portrait",
+    //         unit: "mm",
+    //         format: "a4",
+    //     });
+
+    //     const pageWidth = pdf.internal.pageSize.getWidth();
+    //     const imgProps = pdf.getImageProperties(data);
+    //     const pdfWidth = pageWidth;
+    //     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    //     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    //     pdf.save("resume.pdf");
+    // };
 
     const { darkMode } = useContext(ThemeContext);
 
-    const images = [firstImage, secondImage, thirdImage, fourthImage]
+    
     const index = localStorage.getItem("index")
 
 
@@ -445,21 +467,9 @@ function FormsMain() {
                     </Accordion>
 
                 </div>
-{/* className='w-[794px] h-[1123px]' */}
-                <div className="flex flex-col items-center justify-center w-2xl gap-5 px-5 py-10 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
-                    <div ref={targetRef} >
-                          <Theme1/>  
-                    </div>
-                    <div className="flex justify-center">
-                        <button
-                            onClick={() => toPDF()}
-                            type="button"
-                            className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
-                        >
-                            Download
-                        </button>
-
-                    </div>
+               
+                <div className="flex flex-col items-center justify-center w-2xl gap-5 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
+                    <ThemeComponent/>
                 </div>
 
             </main>
@@ -467,4 +477,4 @@ function FormsMain() {
     )
 }
 
-export default FormsMain
+    export default FormsMain

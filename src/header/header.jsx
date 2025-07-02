@@ -4,11 +4,12 @@ import { ThemeContext } from "../toggle/ThemeContext";
 
 function Header(){
 
-    const {darkMode,setDarkMode} = useContext(ThemeContext)
 
+    const {darkMode,setDarkMode} = useContext(ThemeContext)
     const toggleChecked = () => {
         setDarkMode(_ => !_)
     }
+    
     return (
         <>
             <header className={`
