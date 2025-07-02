@@ -15,6 +15,8 @@ export default {
           'dark-bg': '#1a202c',
           'light-text': '#000000',
           'dark-text': '#ffffff',
+          "costum-blue": "#323b4c",
+          "costum-gray":"#e4e4e4"
         }
       },
   },
