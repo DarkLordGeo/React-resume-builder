@@ -1,11 +1,12 @@
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
+// import 'swiper/css';
+// import 'swiper/css/effect-coverflow';
+// import 'swiper/css/pagination';
 
 import Header from '../header/header';
-import { ThemeContext } from '../toggle/ThemeContext';
 import ThemesMain from './themesMain';
-import { useContext, useEffect, useState } from 'react';
+
+import { ThemeContext } from '../toggle/ThemeContext';
+import { useEffect, useState } from 'react';
 
 function Themes() {
 
@@ -20,12 +21,10 @@ function Themes() {
   
   return (
     <>
-    <div>
       <ThemeContext.Provider value={{darkMode,setDarkMode}}>
         <Header />
         <ThemesMain />
       </ThemeContext.Provider>
-    </div>
     </>
   );
 }

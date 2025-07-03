@@ -2,15 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare,  faLinkedinIn} from "@fortawesome/free-brands-svg-icons"
 
 import { ThemeContext } from "../toggle/ThemeContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 
 
 function Footer() {
-    
     const { darkMode } = useContext(ThemeContext);
     const date = new Date
-    
     return(
         <>
         <footer className={` ${darkMode ? 'dark:bg-gray-900 dark:text-white' : 'bg-light-bg text-light-text'} flex flex-col items-center h-full gap-10 pt-12 pb-12 border-t border-slate-500 `}>
