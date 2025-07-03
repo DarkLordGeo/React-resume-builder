@@ -4,11 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
-
 function ThemeComponent() {
-
-
     const navigate = useNavigate()
     const { darkMode } = useContext(ThemeContext);
     
@@ -19,7 +15,7 @@ function ThemeComponent() {
 
     return (
         <>
-            <div className="flex flex-col items-center justify-center w-2xl gap-5 px-5 py-10 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
+            <div className="flex flex-col items-center justify-center w-2xl gap-5 px-5 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
                 <div className="w-[794px] h-[1123px] bg-white" >
                     <div className="flex flex-col items-center justify-center h-full shadow-xl ">
                         <div className="flex items-center justify-center w-full px-0 py-16 bg-costum-blue ">

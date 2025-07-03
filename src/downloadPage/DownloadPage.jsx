@@ -18,7 +18,7 @@ function DownloadPage() {
     return (
         <>
             <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
-                <div className={`flex flex-col items-center justify-center w-full gap-12 h-max  ${darkMode ? 'dark:bg-gray-900 ' : 'bg-light-bg text-light-text'} `}>
+                <div className={`flex flex-col items-center justify-center w-full gap-12 h-max  pb-0 sm:pb-44 ${darkMode ? 'dark:bg-gray-900 ' : 'bg-light-bg text-light-text'} overflow-hidden`}>
                     <Header />
                     <Theme1 />
                 </div>
