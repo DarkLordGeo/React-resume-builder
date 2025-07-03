@@ -7,10 +7,10 @@ import { useContext, useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flowbite-react";
 import { ThemeContext } from "../toggle/ThemeContext";
 
-import { useRef } from 'react';
+// import { useRef } from 'react';
 
-import jsPDF from 'jspdf'
-import html2canvas from 'html2canvas'
+// import jsPDF from 'jspdf'
+// import html2canvas from 'html2canvas'
 import ThemeComponent from '../themeComponent/ThemeComponent.jsx';
 
 
@@ -50,7 +50,7 @@ function FormsMain() {
 
     return (
         <>
-            <main className={`flex flex-col justify-start ${darkMode ? 'dark:bg-gray-900 dark:text-white' : 'bg-light-bg text-light-text'} lg:flex-row lg:justify-center items-center px-2.5 py-5  lg:items-start lg:py-5 min-h-screen`}>
+            <main className={`flex flex-col justify-start ${darkMode ? 'dark:bg-gray-900 ' : 'bg-light-bg text-light-text'} lg:flex-row lg:justify-center items-center px-2.5 py-5  lg:items-start lg:py-5 min-h-screen`}>
 
                 <div className="flex flex-col items-center justify-center w-full gap-5 px-5 py-10 rounded-md shadow-xl">
 
