@@ -4,7 +4,7 @@
 // import fourthImage from '../themes/img/fourth.jpg'
 
 import { useContext, useEffect, useState } from "react";
-import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flowbite-react";
+import { Accordion, AccordionContent, AccordionPanel, AccordionTitle, useTableBodyContext } from "flowbite-react";
 import { ThemeContext } from "../toggle/ThemeContext";
 
 // import { useRef } from 'react';
@@ -15,36 +15,155 @@ import ThemeComponent from '../themeComponent/ThemeComponent.jsx';
 
 
 function FormsMain() {
-
-    // const [direct,setDirected] = useState(false)
-    
-    // const printRef = useRef();
-    // const handleDownloadPdf = async () => {
-    //     const element = printRef.current;
-    //     const canvas = await html2canvas(element, {
-    //         scale: 2,
-    //         useCORS: true,
-    //         backgroundColor: "#fff",
-    //     });
-    //     const data = canvas.toDataURL("image/png");
-    //     const pdf = new jsPDF({
-    //         orientation: "portrait",
-    //         unit: "mm",
-    //         format: "a4",
-    //     });
-
-    //     const pageWidth = pdf.internal.pageSize.getWidth();
-    //     const imgProps = pdf.getImageProperties(data);
-    //     const pdfWidth = pageWidth;
-    //     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-    //     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-    //     pdf.save("resume.pdf");
-    // };
-
     const { darkMode } = useContext(ThemeContext);
 
+    const [url, setUrl] = useState("")
+    const [name, setName] = useState("")
+    const [position, setPosition] = useState("")
+
+
+    const [phone, setPhone] = useState("")
+    const [email, setEmail] = useState("")
+    const [address, setAddress] = useState("")
+    const [website, setWebsite] = useState("")
+
+
+
+
+    const [companyName, setCompanyName] = useState("")
+
+    const [startDate, setStartDate] = useState("")
+    const [endDate, setEndDate] = useState("")
+
+    const [companyPosition, setCompanyPosition] = useState("")
+    const [experience, setExperience] = useState("")
+
+
+
+    const [skills, setSkills] = useState([])
+    const [skill, setSkill] = useState("")
+
+    const skillChange = (e) => {
+        setSkill(e.target.value)
+    }
+    const updateSkills = () => {
+        const newUpdateSkills = [...skills, skill]
+        if (skill === "") {
+            return
+        }
+        setSkills(newUpdateSkills)
+        // console.log(newUpdateSkills)
+        setSkill("")
+    }
     
+    const skillContainer = skills.map((content, index) => {
+        return (
+            <>
+                <div className="flex items-center justify-center w-full gap-5" key={index + 1}>
+                    <div className="w-full">
+                        <input
+                            value={content}
+                            onChange={skillChange}
+                            disabled
+                            className={`bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                            ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
+                            `}
+                        />
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <button
+                            onClick={() => {
+                                const updated = [...skills]
+                                updated.splice(index, 1)
+                                setSkills(updated)
+                            }}
+                            type="button"
+                            className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
+                        >
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            </>
+        )
+    })
+
+    // const updateSkillChange = () => {
+    //     setSkill(skill)
+    // }
+
+    // console.log(skill)
+
+    // * fix url change
+    const urlChange = (e) => {
+        setUrl(e.target.value)
+    }
+    const nameChange = (name) => {
+        setName(name.target.value)
+    }
+    const positionChange = (position) => {
+        setPosition(position.target.value)
+    }
+
+    // second accordion
+    const phoneChange = (e) => {
+        setPhone(e.target.value)
+    }
+    const emailChange = (e) => {
+        setEmail(e.target.value)
+    }
+    const addressChange = (e) => {
+        setAddress(e.target.value)
+    }
+    const websiteChange = (e) => {
+        setWebsite(e.target.value)
+    }
+
+    // third accordion
+
+    const companyChange = (e) => {
+        setCompanyName(e.target.value)
+    }
+
+    const startDateChange = (e) => {
+        setStartDate(e.target.value)
+    }
+    const endDateChange = (e) => {
+        setEndDate(e.target.value)
+    }
+
+    const companyPositionChange = (e) => {
+        setCompanyPosition(e.target.value)
+    }
+    const experienceChange = (e) => {
+        setExperience(e.target.value)
+    }
+
+
+    const inputData = {
+        url: url,
+        name: name,
+        position: position,
+
+        phone: phone,
+        email: email,
+        address: address,
+        website: website,
+
+
+        companyName: companyName,
+        startDate: startDate,
+        endDate: endDate,
+        companyPosition: companyPosition,
+        experience: experience,
+
+        skills:skills,
+
+    }
+
+
+
+
     const index = localStorage.getItem("index")
 
 
@@ -72,15 +191,19 @@ function FormsMain() {
                                                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                                             </div>
-                                            <input id="dropzone-file" type="file" className="hidden" />
+                                            <input
+                                                onChange={urlChange}
+                                                type="file" className="hidden" />
                                         </label>
                                     </div>
                                     <div className='w-full sm:w-3/6'>
                                         <div className="w-full mb-6 sm:w-full">
                                             <label htmlFor="default-input"
                                                 className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
-                                            >Name </label>
-                                            <input type="text" id="default-input"
+                                            >Name/Surname</label>
+                                            <input
+                                                onChange={nameChange}
+                                                type="text" id="default-input"
                                                 className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                             ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                         `}
@@ -90,13 +213,14 @@ function FormsMain() {
                                             <label htmlFor="default-input"
                                                 className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
                                             >Desired position</label>
-                                            <input type="text" id="default-input"
+                                            <input
+                                                onChange={positionChange}
+                                                type="text" id="default-input"
                                                 className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                             ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                         `}
                                             />
                                         </div>
-
                                     </div>
                                 </div>
                             </AccordionContent>
@@ -114,7 +238,11 @@ function FormsMain() {
                                             <label htmlFor="default-input"
                                                 className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
                                             >Phone</label>
-                                            <input type="text" id="default-input"
+                                            <input
+                                                onChange={phoneChange}
+                                                type="tel"
+                                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                                required
                                                 className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                             ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                             `}
@@ -124,7 +252,9 @@ function FormsMain() {
                                             <label htmlFor="default-input"
                                                 className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
                                             >Address</label>
-                                            <input type="text" id="default-input"
+                                            <input
+                                                onChange={addressChange}
+                                                type="text" id="default-input"
                                                 className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                             ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                             `} />
@@ -135,7 +265,9 @@ function FormsMain() {
                                             <label htmlFor="default-input"
                                                 className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
                                             >Email</label>
-                                            <input type="text" id="default-input"
+                                            <input
+                                                onChange={emailChange}
+                                                type="text" id="default-input"
                                                 className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                             ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                             `}
@@ -145,7 +277,9 @@ function FormsMain() {
                                             <label htmlFor="default-input"
                                                 className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
                                             >Website</label>
-                                            <input type="text" id="default-input"
+                                            <input
+                                                onChange={websiteChange}
+                                                type="text" id="default-input"
                                                 className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                             ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                             `}
@@ -173,6 +307,7 @@ function FormsMain() {
                                             Company name
                                         </label>
                                         <input
+                                            onChange={companyChange}
                                             type="text"
                                             id="default-input"
                                             className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
@@ -192,7 +327,7 @@ function FormsMain() {
                                             date-rangepicker=""
                                             className="flex items-center justify-center w-full"
                                         >
-                                            <div className="relative">
+                                            <div className="relative w-full">
                                                 <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                                                     <svg
                                                         className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -205,17 +340,18 @@ function FormsMain() {
                                                     </svg>
                                                 </div>
                                                 <input
+                                                    onChange={startDateChange}
                                                     id="datepicker-range-start"
                                                     name="start"
                                                     type="text"
-                                                    className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                    className={`pl-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                     ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                                     `}
                                                     placeholder="Select date start"
                                                 />
                                             </div>
                                             <span className="mx-4 text-gray-500">to</span>
-                                            <div className="relative">
+                                            <div className="relative w-full">
                                                 <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                                                     <svg
                                                         className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -228,10 +364,11 @@ function FormsMain() {
                                                     </svg>
                                                 </div>
                                                 <input
+                                                    onChange={endDateChange}
                                                     id="datepicker-range-end"
                                                     name="end"
                                                     type="text"
-                                                    className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                    className={`pl-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                     ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                                     `}
                                                     placeholder="Select date end"
@@ -249,6 +386,7 @@ function FormsMain() {
                                             Position
                                         </label>
                                         <input
+                                            onChange={companyPositionChange}
                                             type="text"
                                             id="default-input"
                                             className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
@@ -264,6 +402,7 @@ function FormsMain() {
                                             Experience
                                         </label>
                                         <input
+                                            onChange={experienceChange}
                                             type="text"
                                             id="default-input"
                                             className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
@@ -279,7 +418,6 @@ function FormsMain() {
                             <AccordionTitle className={`w-full focus:ring-0 focus:outline-none 
                                 ${darkMode ? 'bg-gray-900 hover:bg-gray-800 text-gray-400'
                                     : 'hover:!bg-slate-100 !text-black !bg-white'}
-                                
                                 `}>
                                 Skills | Languages
                             </AccordionTitle>
@@ -293,6 +431,8 @@ function FormsMain() {
                                             Add skill
                                         </label>
                                         <input
+                                            value={skill}
+                                            onChange={skillChange}
                                             type="text"
                                             id="default-input"
                                             className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
@@ -302,6 +442,7 @@ function FormsMain() {
                                     </div>
                                     <div className="flex items-center justify-center">
                                         <button
+                                            onClick={updateSkills}
                                             type="button"
                                             className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
                                         >
@@ -309,6 +450,10 @@ function FormsMain() {
                                         </button>
                                     </div>
                                 </div>
+                                <div className="flex flex-col gap-5 mb-6">
+                                    {skillContainer}
+                                </div>
+                                
                                 <div className="flex w-full gap-5">
                                     <div className="w-full mb-6">
                                         <label
@@ -379,7 +524,7 @@ function FormsMain() {
                                             className="flex items-center justify-center w-full"
                                         >
 
-                                            <div className="relative">
+                                            <div className="relative w-full">
                                                 <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                                                     <svg
                                                         className={`w-4 h-4 text-gray-500 dark:text-gray-400`}
@@ -395,7 +540,7 @@ function FormsMain() {
                                                     id="datepicker-range-start"
                                                     name="start"
                                                     type="text"
-                                                    className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                    className={`pl-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                 ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                                 `}
                                                     placeholder="Select date start"
@@ -404,7 +549,7 @@ function FormsMain() {
                                             <span className={`mx-4 text-gray-500
                                                 ${darkMode ? 'text-gray-500' : '!text-black'}
                                                 `}>to</span>
-                                            <div className="relative">
+                                            <div className="relative w-full">
                                                 <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                                                     <svg
                                                         className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -420,7 +565,7 @@ function FormsMain() {
                                                     id="datepicker-range-end"
                                                     name="end"
                                                     type="text"
-                                                    className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                    className={`pl-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                 ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                                 `}
                                                     placeholder="Select date end"
@@ -467,9 +612,9 @@ function FormsMain() {
                     </Accordion>
 
                 </div>
-               
+
                 <div className="flex flex-col items-center justify-center w-2xl gap-5 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
-                    <ThemeComponent/>
+                    <ThemeComponent {...inputData} />
                 </div>
 
             </main>
@@ -477,4 +622,4 @@ function FormsMain() {
     )
 }
 
-    export default FormsMain
+export default FormsMain

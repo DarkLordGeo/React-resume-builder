@@ -3,12 +3,24 @@ import { ThemeContext } from "../toggle/ThemeContext";
 import { useNavigate } from 'react-router-dom';
 
 
+function ThemeComponent(props) {
 
-function ThemeComponent() {
-    
+
+    const skillsList = ({props}) =>{
+        return(
+            props.map((content,index) =>{
+                <li
+                 key={index}
+                >
+                    {content}
+                </li>
+            })
+        )
+    }
+
+
     const navigate = useNavigate()
     const { darkMode } = useContext(ThemeContext);
-    
     const index = localStorage.getItem("index")
     function navigateDownloadPage() {
         navigate("/download")
@@ -22,10 +34,10 @@ function ThemeComponent() {
                         <div className="flex items-center justify-center w-full px-0 py-16 bg-costum-blue ">
                             <div className="flex flex-col items-start justify-center mt-8 text-white ml-36">
                                 <div className="text-4xl font-bold ">
-                                    <h1>Name Surname</h1>
+                                    <h1>{props.name}</h1>
                                 </div>
                                 <div>
-                                    <h1 className="text-2xl font-thin">position</h1>
+                                    <h1 className="text-2xl font-thin">{props.position}</h1>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +46,7 @@ function ThemeComponent() {
                                 <div className="flex items-center justify-center w-auto -mt-36">
                                     <img
                                         className="rounded-full border-white border-4 w-[200px] h-[200px] object-cover"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQBFy0j_72yEKBKNRbPbCzxfNxq1H9Y57ygg&s"
+                                        src={props.url}
                                     />
                                 </div>
                                 <div className="flex flex-col items-start justify-start w-full h-full gap-8 mt-5">
@@ -52,7 +64,7 @@ function ThemeComponent() {
                                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10.0376 5.31617L10.6866 6.4791C11.2723 7.52858 11.0372 8.90532 10.1147 9.8278C10.1147 9.8278 10.1147 9.8278 10.1147 9.8278C10.1146 9.82792 8.99588 10.9468 11.0245 12.9755C13.0525 15.0035 14.1714 13.8861 14.1722 13.8853C14.1722 13.8853 14.1722 13.8853 14.1722 13.8853C15.0947 12.9628 16.4714 12.7277 17.5209 13.3134L18.6838 13.9624C20.2686 14.8468 20.4557 17.0692 19.0628 18.4622C18.2258 19.2992 17.2004 19.9505 16.0669 19.9934C14.1588 20.0658 10.9183 19.5829 7.6677 16.3323C4.41713 13.0817 3.93421 9.84122 4.00655 7.93309C4.04952 6.7996 4.7008 5.77423 5.53781 4.93723C6.93076 3.54428 9.15317 3.73144 10.0376 5.31617Z"></path></g></svg>
                                                     </div>
                                                     <div>
-                                                        <p>(715) 333-2541</p>
+                                                        <p>{props.phone}</p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-end justify-center gap-1">
@@ -61,7 +73,7 @@ function ThemeComponent() {
                                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="style=fill"> <g id="email"> <path id="Subtract" fillRule="evenodd" clipRule="evenodd" d="M7 2.75C5.38503 2.75 3.92465 3.15363 2.86466 4.1379C1.79462 5.13152 1.25 6.60705 1.25 8.5V15.5C1.25 17.393 1.79462 18.8685 2.86466 19.8621C3.92465 20.8464 5.38503 21.25 7 21.25H17C18.615 21.25 20.0754 20.8464 21.1353 19.8621C22.2054 18.8685 22.75 17.393 22.75 15.5V8.5C22.75 6.60705 22.2054 5.13152 21.1353 4.1379C20.0754 3.15363 18.615 2.75 17 2.75H7ZM19.2285 8.3623C19.5562 8.10904 19.6166 7.63802 19.3633 7.31026C19.1101 6.98249 18.6391 6.9221 18.3113 7.17537L12.7642 11.4616C12.3141 11.8095 11.6858 11.8095 11.2356 11.4616L5.6886 7.17537C5.36083 6.9221 4.88982 6.98249 4.63655 7.31026C4.38328 7.63802 4.44367 8.10904 4.77144 8.3623L10.3185 12.6486C11.3089 13.4138 12.691 13.4138 13.6814 12.6486L19.2285 8.3623Z"></path> </g> </g> </g></svg>
                                                     </div>
                                                     <div>
-                                                        <p>john8702@goldinbox.net</p>
+                                                        <p>{props.email}</p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-end justify-center gap-1">
@@ -70,7 +82,7 @@ function ThemeComponent() {
                                                             viewBox="-4 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" ><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>location</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" strokeWidth="1" fillRule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-106.000000, -413.000000)" > <path d="M118,422 C116.343,422 115,423.343 115,425 C115,426.657 116.343,428 118,428 C119.657,428 121,426.657 121,425 C121,423.343 119.657,422 118,422 L118,422 Z M118,430 C115.239,430 113,427.762 113,425 C113,422.238 115.239,420 118,420 C120.761,420 123,422.238 123,425 C123,427.762 120.761,430 118,430 L118,430 Z M118,413 C111.373,413 106,418.373 106,425 C106,430.018 116.005,445.011 118,445 C119.964,445.011 130,429.95 130,425 C130,418.373 124.627,413 118,413 L118,413 Z" id="location" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
                                                     </div>
                                                     <div>
-                                                        <p>774 Harvest Laney</p>
+                                                        <p>{props.address}</p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-end justify-center gap-1">
@@ -79,7 +91,7 @@ function ThemeComponent() {
                                                             viewBox="0 0 512 512" id="_x30_1" version="1.1" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M418.275,146h-46.667 c-5.365-22.513-12.324-43.213-20.587-61.514c15.786,8.776,30.449,19.797,43.572,32.921C403.463,126.277,411.367,135.854,418.275,146 z M452,256c0,17.108-2.191,33.877-6.414,50h-64.034c1.601-16.172,2.448-32.887,2.448-50s-0.847-33.828-2.448-50h64.034 C449.809,222.123,452,238.892,452,256z M256,452c-5.2,0-21.048-10.221-36.844-41.813c-6.543-13.087-12.158-27.994-16.752-44.187 h107.191c-4.594,16.192-10.208,31.1-16.752,44.187C277.048,441.779,261.2,452,256,452z M190.813,306 c-1.847-16.247-2.813-33.029-2.813-50s0.966-33.753,2.813-50h130.374c1.847,16.247,2.813,33.029,2.813,50s-0.966,33.753-2.813,50 H190.813z M60,256c0-17.108,2.191-33.877,6.414-50h64.034c-1.601,16.172-2.448,32.887-2.448,50s0.847,33.828,2.448,50H66.414 C62.191,289.877,60,273.108,60,256z M256,60c5.2,0,21.048,10.221,36.844,41.813c6.543,13.087,12.158,27.994,16.752,44.187H202.404 c4.594-16.192,10.208-31.1,16.752-44.187C234.952,70.221,250.8,60,256,60z M160.979,84.486c-8.264,18.301-15.222,39-20.587,61.514 H93.725c6.909-10.146,14.812-19.723,23.682-28.593C130.531,104.283,145.193,93.262,160.979,84.486z M93.725,366h46.667 c5.365,22.513,12.324,43.213,20.587,61.514c-15.786-8.776-30.449-19.797-43.572-32.921C108.537,385.723,100.633,376.146,93.725,366z M351.021,427.514c8.264-18.301,15.222-39,20.587-61.514h46.667c-6.909,10.146-14.812,19.723-23.682,28.593 C381.469,407.717,366.807,418.738,351.021,427.514z"></path></g></svg>
                                                     </div>
                                                     <div>
-                                                        <a href="youtube.com">mywebsite.com</a>
+                                                        <a href={props.website}>{props.website}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,12 +106,23 @@ function ThemeComponent() {
                                             </div>
                                             <div>
                                                 <ul className="px-5 font-normal list-disc text-costum-blue mt-[10px] text-[15px]">
-                                                    <li>HTML</li>
-                                                    <li>Arduino</li>
+                                                    {/* {userSkills.map((skill, key) => {
+                                                        <li key={key}>
+                                                            {skill}
+                                                        </li>
+                                                    })} */}
+                                                    {skillsList}
+                                                    {/* {...props.skills.map((index, key) => {
+                                                        <li
+                                                            key={key}>
+                                                            {index}
+                                                        </li>
+                                                    })} */}
+                                                    {/* <li>Arduino</li>
                                                     <li>PCB Design</li>
                                                     <li>Penetration Testing</li>
                                                     <li>React</li>
-                                                    <li>Power Electronics</li>
+                                                    <li>Power Electronics</li>  */}
                                                 </ul>
                                             </div>
                                         </div>
@@ -113,10 +136,14 @@ function ThemeComponent() {
                                             </div>
                                             <div>
                                                 <ul className="px-5 font-normal list-disc text-costum-blue mt-[10px] text-[15px]">
-                                                    <li>JavaScript</li>
+                                                    {/* {userSkills.map((skill,key) =>{
+                                                      <li key={key}>{skill}</li>
+                                                    })} */}
+
+                                                    {/* <li>JavaScript</li>
                                                     <li>C</li>
                                                     <li>Python</li>
-                                                    <li>Rust</li>
+                                                    <li>Rust</li> */}
                                                 </ul>
                                             </div>
                                         </div>
@@ -168,23 +195,27 @@ function ThemeComponent() {
                                                         <div className="flex flex-row gap-2">
                                                             <div>
                                                                 <div className="text-lg font-medium">
-                                                                    <p>Borcelle studio</p>
+                                                                    <p>{props.companyName}</p>
                                                                 </div>
                                                                 <div className="text-sm font-semibold">
-                                                                    <p>Marketing manager </p>
+                                                                    <p>{props.companyPosition}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className="font-base">
-                                                            <p>2004 - present</p>
+                                                            <p>{props.startDate}- {props.endDate}</p>
                                                         </div>
                                                     </div>
                                                     <div className="mt-3 ml-8 font-normal">
                                                         <ul className="list-disc text-costum-blue">
+                                                            {/* <li>{props.experience}</li> */}
+                                                            {/* {userSkills.map((skill,key) =>{
+                                                                <li key={key}>{skill}</li>
+                                                            })} */}
+                                                            {/* <li>Boosted nvidia sales</li>
                                                             <li>Boosted nvidia sales</li>
                                                             <li>Boosted nvidia sales</li>
-                                                            <li>Boosted nvidia sales</li>
-                                                            <li>Boosted nvidia sales</li>
+                                                            <li>Boosted nvidia sales</li> */}
                                                         </ul>
                                                     </div>
                                                 </div>
