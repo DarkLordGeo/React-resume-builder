@@ -29,6 +29,7 @@ function FormsMain() {
 
 
 
+    // company experience
 
     const [companyName, setCompanyName] = useState("")
 
@@ -39,60 +40,131 @@ function FormsMain() {
     const [experience, setExperience] = useState("")
 
 
-
+    // skills
     const [skills, setSkills] = useState([])
     const [skill, setSkill] = useState("")
+    const [editSkill, seteditSkill] = useState(null);
 
     const skillChange = (e) => {
         setSkill(e.target.value)
     }
     const updateSkills = () => {
-        const newUpdateSkills = [...skills, skill]
-        if (skill === "") {
-            return
-        }
-        setSkills(newUpdateSkills)
-        // console.log(newUpdateSkills)
+        if (skill.trim() === "") return
+        setSkills([...skills, skill.trim()])
         setSkill("")
     }
-    
+    const changeSkill = (e, index) => {
+        const updatedSkills = [...skills]
+        updatedSkills[index] = e.target.value
+        setSkills(updatedSkills)
+    }
+
     const skillContainer = skills.map((content, index) => {
         return (
-            <>
-                <div className="flex items-center justify-center w-full gap-5" key={index + 1}>
-                    <div className="w-full">
-                        <input
-                            value={content}
-                            onChange={skillChange}
-                            disabled
-                            className={`bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+            <div key={index} className="flex items-center justify-center w-full gap-5">
+                <div className="w-full">
+                    <input
+                        value={content}
+                        onChange={(e) => changeSkill(e, index)}
+                        disabled={editSkill !== index}
+                        className={`w-full outline-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 
                             ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                             `}
-                        />
-                    </div>
-                    <div className="flex items-center justify-center">
-                        <button
-                            onClick={() => {
-                                const updated = [...skills]
-                                updated.splice(index, 1)
-                                setSkills(updated)
-                            }}
-                            type="button"
-                            className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
-                        >
-                            Remove
-                        </button>
-                    </div>
+                    />
                 </div>
-            </>
+                <div className="flex items-center justify-center">
+                    <button
+                        onClick={() => {
+                            const updated = [...skills]
+                            updated.splice(index, 1)
+                            setSkills(updated)
+                        }}
+                        type="button"
+                        className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
+                    >
+                        Remove
+                    </button>
+                    <button
+                        onClick={() => {
+                            if (editSkill === index) {
+                                seteditSkill(null)
+                            } else {
+                                seteditSkill(index)
+                            }
+                        }}
+                        type="button"
+                        className={`ml-5 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
+                    >
+                        {editSkill === index ? "Save" : "Edit"}
+                    </button>
+                </div>
+            </div>
         )
     })
 
-    // const updateSkillChange = () => {
-    //     setSkill(skill)
-    // }
+    // languages
+    const [languages, setLanguages] = useState([])
+    const [language, setLanguage] = useState("")
+    const [editLanguage, setEditLanguage] = useState(null)
 
-    // console.log(skill)
+    const languageChange = (e) => {
+        setLanguage(e.target.value)
+    }
+    const updateLanguages = () => {
+        if (language.trim() === "") return
+        setLanguages([...languages, language.trim()])
+        setLanguage("")
+    }
+    const changeLanguage = (e, index) => {
+        const updatedLanguages = [...languages]
+        updatedLanguages[index] = e.target.value
+        setLanguages(updatedLanguages)
+    }
+
+    const languageContainer = languages.map((content, index) => {
+        return (
+            <div key={index} className="flex items-center justify-center w-full gap-5">
+                <div className="w-full">
+                    <input
+                        value={content}
+                        onChange={(e) => changeLanguage(e, index)}
+                        disabled={editLanguage !== index}
+                        className={`w-full outline-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 
+                            ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
+                            `}
+                    />
+                </div>
+                <div className="flex items-center justify-center">
+                    <button
+                        onClick={() => {
+                            const updated = [...languages]
+                            updated.splice(index, 1)
+                            setLanguages(updated)
+                        }}
+                        type="button"
+                        className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
+                    >
+                        Remove
+                    </button>
+                    <button
+                        onClick={() => {
+                            if (editLanguage === index) {
+                                setEditLanguage(null)
+                            } else {
+                                setEditLanguage(index)
+                            }
+                        }}
+                        type="button"
+                        className={`ml-5 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
+                    >
+                        {editLanguage === index ? "Save" : "Edit"}
+                    </button>
+                </div>
+            </div>
+        )
+
+    })
+
 
     // * fix url change
     const urlChange = (e) => {
@@ -121,21 +193,22 @@ function FormsMain() {
 
     // third accordion
 
+    // company 
     const companyChange = (e) => {
         setCompanyName(e.target.value)
     }
 
-    const startDateChange = (e) => {
+    const startCompanyDateChange = (e) => {
         setStartDate(e.target.value)
     }
-    const endDateChange = (e) => {
+    const endCompanyDateChang = (e) => {
         setEndDate(e.target.value)
     }
 
     const companyPositionChange = (e) => {
         setCompanyPosition(e.target.value)
     }
-    const experienceChange = (e) => {
+    const companyExperienceChange = (e) => {
         setExperience(e.target.value)
     }
 
@@ -157,7 +230,8 @@ function FormsMain() {
         companyPosition: companyPosition,
         experience: experience,
 
-        skills:skills,
+        skills: skills,
+        languages: languages
 
     }
 
@@ -175,11 +249,12 @@ function FormsMain() {
 
                     <Accordion collapseAll className='w-full '>
 
+                        {/* Name/Positiion */}
                         <AccordionPanel className='w-full '>
                             <AccordionTitle className={`w-full focus:ring-0 focus:outline-none 
                             ${darkMode ? 'bg-gray-900 hover:bg-gray-800 text-gray-400'
                                     : ' hover:!bg-slate-100 !text-black !bg-white'}`}>
-                                Name / Desired position</AccordionTitle>
+                                Name / Position</AccordionTitle>
                             <AccordionContent className={`${darkMode ? 'bg-black' : '!bg-white !text-black'}`}>
                                 <div className='flex flex-col gap-5 sm:flex-row'>
                                     <div className="flex items-center justify-center w-full sm:w-3/6">
@@ -212,7 +287,7 @@ function FormsMain() {
                                         <div className="w-full mb-6 sm:w-full">
                                             <label htmlFor="default-input"
                                                 className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
-                                            >Desired position</label>
+                                            >Position</label>
                                             <input
                                                 onChange={positionChange}
                                                 type="text" id="default-input"
@@ -226,6 +301,7 @@ function FormsMain() {
                             </AccordionContent>
                         </AccordionPanel>
 
+                        {/* Contact */}
                         <AccordionPanel className='w-full '>
                             <AccordionTitle className={`w-full focus:ring-0 focus:outline-none 
                                  ${darkMode ? 'bg-gray-900 hover:bg-gray-800 text-gray-400'
@@ -295,6 +371,37 @@ function FormsMain() {
                                 ${darkMode ? 'bg-gray-900 hover:bg-gray-800 text-gray-400'
                                     : 'hover:!bg-slate-100 !text-black !bg-white'}
                             `}>
+                                About
+                            </AccordionTitle>
+                            <AccordionContent className={`${darkMode ? 'bg-black' : '!bg-white !text-black'}`}>
+                                <div className="flex flex-col items-center justify-center w-full gap-0 lg:flex-row lg:gap-5">
+                                    <div className="w-full mb-6 ">
+                                        <label
+                                            htmlFor="default-input"
+                                            className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
+                                        >
+                                            Bio
+                                        </label>
+                                        <textarea
+                                            // onChange={companyChange}
+                                            type="text"
+                                            id="default-input"
+                                            className={`outline-none w-full h-[120px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 
+                                            ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
+                                            `}
+                                        />
+                                    </div>
+                                </div>
+
+                            </AccordionContent>
+                        </AccordionPanel>
+
+                        {/* Work experience */}
+                        <AccordionPanel className='w-full'>
+                            <AccordionTitle className={`w-full focus:ring-0 focus:outline-none
+                                ${darkMode ? 'bg-gray-900 hover:bg-gray-800 text-gray-400'
+                                    : 'hover:!bg-slate-100 !text-black !bg-white'}
+                            `}>
                                 Work experience
                             </AccordionTitle>
                             <AccordionContent className={`${darkMode ? 'bg-black' : '!bg-white !text-black'}`}>
@@ -340,7 +447,7 @@ function FormsMain() {
                                                     </svg>
                                                 </div>
                                                 <input
-                                                    onChange={startDateChange}
+                                                    onChange={startCompanyDateChange}
                                                     id="datepicker-range-start"
                                                     name="start"
                                                     type="text"
@@ -364,7 +471,7 @@ function FormsMain() {
                                                     </svg>
                                                 </div>
                                                 <input
-                                                    onChange={endDateChange}
+                                                    onChange={endCompanyDateChang}
                                                     id="datepicker-range-end"
                                                     name="end"
                                                     type="text"
@@ -377,8 +484,8 @@ function FormsMain() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col items-center justify-center w-full gap-0 lg:flex-row lg:gap-5">
-                                    <div className="w-full mb-6 lg:w-3/5">
+                                <div className="flex flex-col items-center justify-center w-full gap-0 lg:gap-5">
+                                    <div className="w-full mb-6 ">
                                         <label
                                             htmlFor="default-input"
                                             className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
@@ -394,26 +501,39 @@ function FormsMain() {
                                             `}
                                         />
                                     </div>
-                                    <div className="w-full mb-6 lg:w-3/5">
-                                        <label
-                                            htmlFor="default-input"
-                                            className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
-                                        >
-                                            Experience
-                                        </label>
-                                        <input
-                                            onChange={experienceChange}
-                                            type="text"
-                                            id="default-input"
-                                            className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                    <div className="flex w-full gap-5">
+                                        <div className="w-full mb-7">
+                                            <label
+                                                htmlFor="default-input"
+                                                className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
+                                            >
+                                                Experience
+                                            </label>
+                                            <input
+                                                // onChange={companyExperienceChange}
+                                                type="text"
+                                                id="default-input"
+                                                className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                 ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                             `}
-                                        />
+                                            />
+                                        </div>
+                                        <div className="flex items-center justify-center">
+                                            <button
+                                                // onClick={updateSkills}
+                                                type="button"
+                                                className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
+                                            >
+                                                Add
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </AccordionContent>
                         </AccordionPanel>
 
+
+                        {/* Skills/language */}
                         <AccordionPanel className='w-full'>
                             <AccordionTitle className={`w-full focus:ring-0 focus:outline-none 
                                 ${darkMode ? 'bg-gray-900 hover:bg-gray-800 text-gray-400'
@@ -423,7 +543,7 @@ function FormsMain() {
                             </AccordionTitle>
                             <AccordionContent className={`${darkMode ? 'bg-black' : '!bg-white !text-black'}`}>
                                 <div className="flex w-full gap-5">
-                                    <div className="w-full mb-6">
+                                    <div className="w-full mb-7">
                                         <label
                                             htmlFor="default-input"
                                             className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
@@ -453,9 +573,8 @@ function FormsMain() {
                                 <div className="flex flex-col gap-5 mb-6">
                                     {skillContainer}
                                 </div>
-                                
                                 <div className="flex w-full gap-5">
-                                    <div className="w-full mb-6">
+                                    <div className="w-full mb-7">
                                         <label
                                             htmlFor="default-input"
                                             className={`block mb-2 text-sm font-medium text-gray-900 ${darkMode ? 'dark:text-white' : 'text-black'} `}
@@ -463,15 +582,18 @@ function FormsMain() {
                                             Add Language
                                         </label>
                                         <input
+                                            value={language}
+                                            onChange={languageChange}
                                             type="text"
                                             id="default-input"
-                                            className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                            className={` bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                 ${darkMode ? 'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' : "focus:outline-1 outline-slate-300"}
                                             `}
                                         />
                                     </div>
                                     <div className="flex items-center justify-center">
                                         <button
+                                            onClick={updateLanguages}
                                             type="button"
                                             className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 ${darkMode ? 'dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700' : 'bg-white text-black '}`}
                                         >
@@ -479,9 +601,13 @@ function FormsMain() {
                                         </button>
                                     </div>
                                 </div>
+                                <div className="flex flex-col gap-5 mb6">
+                                    {languageContainer}
+                                </div>
                             </AccordionContent>
                         </AccordionPanel>
 
+                        {/* Education */}
                         <AccordionPanel className='w-full'>
                             <AccordionTitle className={`w-full focus:ring-0 focus:outline-none
                                 ${darkMode ? 'bg-gray-900 hover:bg-gray-800 text-gray-400'
@@ -613,7 +739,7 @@ function FormsMain() {
 
                 </div>
 
-                <div className="flex flex-col items-center justify-center w-2xl gap-5 min-[0px]:max-[469px]:px-0 min-[0px]:max-[469px]:py-3">
+                <div className="w-full max-w-[794px] px-4 sm:px-6 py-10 flex flex-col items-center justify-center gap-5">
                     <ThemeComponent {...inputData} />
                 </div>
 
