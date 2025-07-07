@@ -32,13 +32,10 @@ function WarningComponent({shown}) {
             </button>
           </div>
           <div className="flex justify-center text-2xl">
-            <FontAwesomeIcon icon={faTriangleExclamation} className="text-yellow-500" />
+            <FontAwesomeIcon icon={faTriangleExclamation} className="text-yellow-400" />
           </div>
           <p className={`mt-6 mb-8 text-center `}>
-            Please be aware that this Resume Builder is developed using JavaScript and styled with Tailwind CSS. It is a
-            client-side application and does not interact with any backend server. All data entered will be stored temporarily
-            in the session and cleared when the browser tab is closed or refreshed. Save your progress locally to avoid
-            data loss. This tool is for demonstration purposes, and updates are under development.
+        This Resume Builder is built with JavaScript and Tailwind CSS. It runs entirely on the client side, with no backend—your data is stored temporarily in the session and will be lost if the page is refreshed or closed. Please save your progress locally. This tool is for demo purposes and still under development.
           </p>
         </div>
       )}
